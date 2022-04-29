@@ -4,7 +4,7 @@ import GuessingGame from './GuessingGame';
 
 function App() {
   const [guesses, setGuesses] = useState([])
-  const [rightAnswer, setRightAnsweer] = useState(Math.floor(Math.random() * 100) + 1);
+  const [rightAnswer, setRightAnswer] = useState(Math.floor(Math.random() * 100) + 1);
 
   useEffect(() => {
     if (guesses === null) {
@@ -19,11 +19,12 @@ function App() {
   }
 
   function saveRightAnswer(rightAnswer){
-    setRightAnsweer(rightAnswer)
+    setRightAnswer(rightAnswer)
   }
 
   function resetGame(){
-    setGuesses(guesses.filter((guess) => guess.guesses === guesses))
+    setGuesses(guesses.filter((guess) => guess.guesses === guesses ))
+    window.location.reload(false);
   }
 
   return (
