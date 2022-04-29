@@ -1,0 +1,19 @@
+.guessbody{
+    background-color: aliceblue;
+    text-align: center;
+    max-width: 960px;
+    margin: 2rem auto;
+    padding: 2rem;
+}
+
+.guessbody h1{
+    font-size: 28px;
+}
+
+.alert{
+    margin: 1rem;
+}
+
+.prompt{
+    margin: 1rem;
+}

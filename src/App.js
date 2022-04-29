@@ -1,17 +1,35 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import Stack from 'react-bootstrap/Stack';
+import GuessingGame from './GuessingGame';
 
 function App() {
+  const [guesses, setGuesses] = useState([])
+  const [rightAnswer, setRightAnsweer] = useState(Math.floor(Math.random() * 100) + 1);
+
+  useEffect(() => {
+    if (guesses === null) {
+      setGuesses(JSON.parse(localStorage.getItem("guesses") || "[]"))
+    } else {
+      localStorage.setItem("guesses", JSON.stringify(guesses))
+    }
+  }, [guesses])
+
+  function handleNewGuess(guess) {
+    setGuesses(guesses.concat(guess))
+  }
+
+  function saveRightAnswer(rightAnswer){
+    setRightAnsweer(rightAnswer)
+  }
+
+  function resetGame(){
+    setGuesses(guesses.filter((guess) => guess.guesses === guesses))
+  }
+
   return (
-    <div style={{ textAlign: 'center' }}>
-      <header>
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Stack gap={3} className="col-md-10 mx-auto">
+      <GuessingGame resetGame={resetGame} createAnswer={saveRightAnswer} onNewGuess={handleNewGuess} luckynumber={rightAnswer} newGuesses={guesses} />
+    </Stack>
   );
 }
 
